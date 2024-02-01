@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import prography.pingpong.common.exception.RestApiException;
 
@@ -22,7 +21,7 @@ public class CustomRoomRepositoryImpl implements CustomRoomRepository{
         List<Room> resultList = query.getResultList();
 
         if (resultList.isEmpty()) {
-            throw RestApiException.badRequest(HttpStatus.BAD_REQUEST);
+            throw RestApiException.badRequest();
         }
         return resultList.get(0);
     }

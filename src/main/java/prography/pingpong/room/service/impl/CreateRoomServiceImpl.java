@@ -1,7 +1,6 @@
 package prography.pingpong.room.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import prography.pingpong.common.exception.RestApiException;
@@ -33,7 +32,7 @@ public class CreateRoomServiceImpl implements CreateRoomService {
     private void checkException(User host) {
         // 활성 상태가 아니거나, 다른 방에 참여한 경우 201 응답
         if (host.getStatus() != UserStatus.ACTIVE || userRoomRepository.existsByUser(host)) {
-            throw RestApiException.badRequest(HttpStatus.BAD_REQUEST);
+            throw RestApiException.badRequest();
         }
     }
 }

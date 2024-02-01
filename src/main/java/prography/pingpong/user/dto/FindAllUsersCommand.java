@@ -1,7 +1,6 @@
 package prography.pingpong.user.dto;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 import prography.pingpong.common.exception.RestApiException;
 
 @Getter
@@ -18,7 +17,7 @@ public class FindAllUsersCommand {
 
     private void selfValidate() {
         if (pageSize < 1 || pageNumber < 0) {
-            throw RestApiException.badRequest(HttpStatus.BAD_REQUEST);
+            throw RestApiException.badRequest();
         }
     }
 }

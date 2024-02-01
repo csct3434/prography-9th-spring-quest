@@ -13,6 +13,10 @@ public class RestApiException extends RuntimeException {
     private final HttpStatus httpStatus;
     private final ApiResponse<Void> apiResponse;
 
+    public static RestApiException badRequest() {
+        return new RestApiException(HttpStatus.BAD_REQUEST, ApiResponse.badRequest());
+    }
+
     public static RestApiException badRequest(HttpStatus httpStatus) {
         return new RestApiException(httpStatus, ApiResponse.badRequest());
     }

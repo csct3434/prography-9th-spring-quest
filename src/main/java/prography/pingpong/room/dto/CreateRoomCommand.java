@@ -1,7 +1,6 @@
 package prography.pingpong.room.dto;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 import prography.pingpong.common.exception.RestApiException;
 import prography.pingpong.room.domain.room.RoomType;
 
@@ -20,7 +19,7 @@ public class CreateRoomCommand {
         try {
             this.roomType = RoomType.valueOf(roomType);
         } catch (Exception e) {
-            throw RestApiException.badRequest(HttpStatus.BAD_REQUEST);
+            throw RestApiException.badRequest();
         }
     }
 }
