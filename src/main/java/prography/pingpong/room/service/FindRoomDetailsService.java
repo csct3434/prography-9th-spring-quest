@@ -1,10 +1,10 @@
 package prography.pingpong.room.service;
 
 import prography.pingpong.room.dto.FindRoomDetailsResponse;
-import prography.pingpong.room.dto.FindRoomServiceCommand;
+import prography.pingpong.room.dto.FindRoomDetailsCommand;
 
 public interface FindRoomDetailsService {
 
-    FindRoomDetailsResponse doService(FindRoomServiceCommand command);
+    FindRoomDetailsResponse doService(FindRoomDetailsCommand command);
 
 }

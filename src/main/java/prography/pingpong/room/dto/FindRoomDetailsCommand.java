@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 import prography.pingpong.common.exception.RestApiException;
 
 @Getter
-public class FindRoomServiceCommand {
+public class FindRoomDetailsCommand {
 
     private final int roomId;
 
-    public FindRoomServiceCommand(int roomId) {
+    public FindRoomDetailsCommand(int roomId) {
         this.roomId = roomId;
         selfValidate();
     }

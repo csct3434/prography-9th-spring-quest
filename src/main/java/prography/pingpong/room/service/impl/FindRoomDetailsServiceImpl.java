@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import prography.pingpong.room.domain.room.Room;
 import prography.pingpong.room.domain.room.RoomRepository;
 import prography.pingpong.room.dto.FindRoomDetailsResponse;
-import prography.pingpong.room.dto.FindRoomServiceCommand;
+import prography.pingpong.room.dto.FindRoomDetailsCommand;
 import prography.pingpong.room.service.FindRoomDetailsService;
 
 @Service
@@ -17,7 +17,7 @@ public class FindRoomDetailsServiceImpl implements FindRoomDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public FindRoomDetailsResponse doService(FindRoomServiceCommand command) {
+    public FindRoomDetailsResponse doService(FindRoomDetailsCommand command) {
         Room room = roomRepository.findByIdOrElseThrow(command.getRoomId());
         return FindRoomDetailsResponse.build(room);
     }
