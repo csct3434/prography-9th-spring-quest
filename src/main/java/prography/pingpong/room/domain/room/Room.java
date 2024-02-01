@@ -8,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class Room extends BaseTimeEntity {
 
     private String title;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
     private User host;
 
