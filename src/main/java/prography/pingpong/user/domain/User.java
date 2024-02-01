@@ -42,4 +42,8 @@ public class User extends BaseTimeEntity {
         this.email = email;
         this.status = status;
     }
+
+    public boolean isActive() {
+        return status == UserStatus.ACTIVE;
+    }
 }

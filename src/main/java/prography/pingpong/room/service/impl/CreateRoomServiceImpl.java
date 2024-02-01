@@ -12,7 +12,6 @@ import prography.pingpong.room.dto.CreateRoomCommand;
 import prography.pingpong.room.service.CreateRoomService;
 import prography.pingpong.user.domain.User;
 import prography.pingpong.user.domain.UserRepository;
-import prography.pingpong.user.domain.UserStatus;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +34,7 @@ public class CreateRoomServiceImpl implements CreateRoomService {
 
     private void checkException(User host) {
         // 활성 상태가 아니거나, 다른 방에 참여한 경우 201 응답
-        if (host.getStatus() != UserStatus.ACTIVE || userRoomRepository.existsByUser(host)) {
+        if (!host.isActive() || userRoomRepository.existsByUser(host)) {
             throw RestApiException.badRequest();
         }
     }
