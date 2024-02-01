@@ -13,6 +13,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import prography.pingpong.common.entity.BaseTimeEntity;
+import prography.pingpong.room.dto.CreateRoomCommand;
 import prography.pingpong.user.domain.User;
 
 @Getter
@@ -38,10 +39,18 @@ public class Room extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private RoomStatus status;
 
-    public Room(String title, User host, RoomType roomType, RoomStatus status) {
+    public Room(String title, RoomType roomType, User host, RoomStatus status) {
         this.title = title;
-        this.host = host;
         this.roomType = roomType;
+        this.host = host;
         this.status = status;
+    }
+
+    public static Room init(CreateRoomCommand command, User host) {
+        return new Room(
+            command.getTitle(),
+            command.getRoomType(),
+            host,
+            RoomStatus.WAIT);
     }
 }
