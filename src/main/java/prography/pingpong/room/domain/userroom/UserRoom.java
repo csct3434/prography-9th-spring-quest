@@ -1,5 +1,6 @@
 package prography.pingpong.room.domain.userroom;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -7,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -24,12 +26,15 @@ public class UserRoom extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
+    @JoinColumn(nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
     private Room room;
 
+    @JoinColumn(nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Team team;
 
