@@ -28,7 +28,7 @@ public class RoomController {
         return ResponseEntity.ok(ApiResponse.success());
     }
 
-    @GetMapping
+    @GetMapping("/room")
     public ResponseEntity<ApiResponse<FindAllRoomsResponse>> findAll(
         @RequestParam("size") int pageSize,
         @RequestParam("page") int pageNumber
