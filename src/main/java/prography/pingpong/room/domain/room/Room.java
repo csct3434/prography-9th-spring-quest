@@ -47,11 +47,7 @@ public class Room extends BaseTimeEntity {
         this.status = status;
     }
 
-    public static Room init(CreateRoomCommand command, User host) {
-        return new Room(
-            command.getTitle(),
-            command.getRoomType(),
-            host,
-            RoomStatus.WAIT);
+    public static Room create(CreateRoomCommand command, User host) {
+        return new Room(command.getTitle(), command.getRoomType(), host, RoomStatus.WAIT);
     }
 }

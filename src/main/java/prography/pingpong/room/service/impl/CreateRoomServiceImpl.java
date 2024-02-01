@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import prography.pingpong.common.exception.RestApiException;
 import prography.pingpong.room.domain.room.Room;
 import prography.pingpong.room.domain.room.RoomRepository;
+import prography.pingpong.room.domain.userroom.UserRoom;
 import prography.pingpong.room.domain.userroom.UserRoomRepository;
 import prography.pingpong.room.dto.CreateRoomCommand;
 import prography.pingpong.room.service.CreateRoomService;
@@ -25,8 +26,11 @@ public class CreateRoomServiceImpl implements CreateRoomService {
     @Transactional
     public void doService(CreateRoomCommand command) {
         User host = userRepository.findByIdOrElseThrow(command.getUserId());
+
         checkException(host);
-        roomRepository.save(Room.init(command, host));
+
+        Room room = roomRepository.save(Room.create(command, host));
+        userRoomRepository.save(UserRoom.buildRed(host, room));
     }
 
     private void checkException(User host) {

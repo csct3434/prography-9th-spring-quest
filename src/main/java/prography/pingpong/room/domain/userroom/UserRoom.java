@@ -28,19 +28,27 @@ public class UserRoom extends BaseTimeEntity {
 
     @JoinColumn(nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
-    private Room room;
+    private User user;
 
     @JoinColumn(nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Room room;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Team team;
 
-    public UserRoom(Room room, User user, Team team) {
-        this.room = room;
+    private UserRoom(User user, Room room, Team team) {
         this.user = user;
+        this.room = room;
         this.team = team;
+    }
+
+    public static UserRoom buildRed(User user, Room room) {
+        return new UserRoom(user, room, Team.RED);
+    }
+
+    public static UserRoom buildBlue(User user, Room room) {
+        return new UserRoom(user, room, Team.BLUE);
     }
 }
