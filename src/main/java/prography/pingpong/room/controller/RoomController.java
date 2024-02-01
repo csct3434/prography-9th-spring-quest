@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,8 +13,11 @@ import prography.pingpong.common.response.ApiResponse;
 import prography.pingpong.room.dto.CreateRoomRequest;
 import prography.pingpong.room.dto.FindAllRoomsCommand;
 import prography.pingpong.room.dto.FindAllRoomsResponse;
+import prography.pingpong.room.dto.FindRoomDetailsCommand;
+import prography.pingpong.room.dto.FindRoomDetailsResponse;
 import prography.pingpong.room.service.CreateRoomService;
 import prography.pingpong.room.service.FindAllRoomsService;
+import prography.pingpong.room.service.FindRoomDetailsService;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +25,7 @@ public class RoomController {
 
     private final CreateRoomService createRoomService;
     private final FindAllRoomsService findAllRoomsService;
+    private final FindRoomDetailsService findRoomDetailsService;
 
     @PostMapping("/room")
     public ResponseEntity<ApiResponse<Void>> create(@Valid @RequestBody CreateRoomRequest request) {
@@ -35,6 +40,13 @@ public class RoomController {
     ) {
         FindAllRoomsCommand command = new FindAllRoomsCommand(pageSize, pageNumber);
         FindAllRoomsResponse result = findAllRoomsService.doService(command);
+        return ResponseEntity.ok(ApiResponse.success(result));
+    }
+
+    @GetMapping("/room/{roomId}")
+    public ResponseEntity<ApiResponse<FindRoomDetailsResponse>> findDetails(@PathVariable("roomId") int roomId) {
+        FindRoomDetailsCommand command = new FindRoomDetailsCommand(roomId);
+        FindRoomDetailsResponse result = findRoomDetailsService.doService(command);
         return ResponseEntity.ok(ApiResponse.success(result));
     }
 
