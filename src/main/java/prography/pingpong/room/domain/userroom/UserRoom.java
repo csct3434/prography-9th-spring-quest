@@ -11,13 +11,14 @@ import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import prography.pingpong.common.entity.BaseTimeEntity;
 import prography.pingpong.room.domain.room.Room;
 import prography.pingpong.user.domain.User;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserRoom {
+public class UserRoom extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
