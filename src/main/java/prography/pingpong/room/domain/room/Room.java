@@ -59,4 +59,8 @@ public class Room extends BaseTimeEntity {
     public int getTeamCapacity() {
         return roomType.getCapacity() / Team.values().length;
     }
+
+    public void setFinish() {
+        this.status = RoomStatus.FINISH;
+    }
 }

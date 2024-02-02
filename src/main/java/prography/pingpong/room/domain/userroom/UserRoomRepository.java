@@ -14,4 +14,8 @@ public interface UserRoomRepository extends JpaRepository<UserRoom, Integer> {
 
     int countByRoomAndTeam(Room room, Team team);
 
+    void deleteByRoom(Room room);
+
+    void deleteByRoomAndUser(Room room, User user);
+
 }
