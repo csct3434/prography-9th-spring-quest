@@ -16,15 +16,18 @@ import prography.pingpong.room.dto.FindAllRoomsCommand;
 import prography.pingpong.room.dto.FindAllRoomsResponse;
 import prography.pingpong.room.dto.FindRoomDetailsCommand;
 import prography.pingpong.room.dto.FindRoomDetailsResponse;
+import prography.pingpong.room.dto.LeaveRoomRequest;
 import prography.pingpong.room.service.AttendRoomService;
 import prography.pingpong.room.service.CreateRoomService;
 import prography.pingpong.room.service.FindAllRoomsService;
 import prography.pingpong.room.service.FindRoomDetailsService;
+import prography.pingpong.room.service.LeaveRoomService;
 
 @RestController
 @RequiredArgsConstructor
 public class RoomController {
 
+    private final LeaveRoomService leaveRoomService;
     private final AttendRoomService attendRoomService;
     private final CreateRoomService createRoomService;
     private final FindAllRoomsService findAllRoomsService;
@@ -59,6 +62,15 @@ public class RoomController {
         @RequestBody AttendRoomRequest request
     ) {
         attendRoomService.doService(request.buildCommand(roomId));
+        return ResponseEntity.ok(ApiResponse.success());
+    }
+
+    @PostMapping("/room/out/{roomId}")
+    public ResponseEntity<ApiResponse<Void>> leave(
+        @PathVariable("roomId") int roomId,
+        @RequestBody LeaveRoomRequest request
+    ) {
+        leaveRoomService.doService(request.buildCommand(roomId));
         return ResponseEntity.ok(ApiResponse.success());
     }
 
