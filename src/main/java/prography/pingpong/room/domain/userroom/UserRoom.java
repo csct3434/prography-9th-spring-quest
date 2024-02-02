@@ -45,6 +45,10 @@ public class UserRoom extends BaseTimeEntity {
         this.team = team;
     }
 
+    public static UserRoom build(User user, Room room, Team team) {
+        return new UserRoom(user, room, team);
+    }
+
     public static UserRoom buildRed(User user, Room room) {
         return new UserRoom(user, room, Team.RED);
     }

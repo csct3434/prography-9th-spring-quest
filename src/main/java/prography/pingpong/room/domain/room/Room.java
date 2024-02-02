@@ -14,6 +14,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import prography.pingpong.common.entity.BaseTimeEntity;
+import prography.pingpong.room.domain.userroom.Team;
 import prography.pingpong.room.dto.CreateRoomCommand;
 import prography.pingpong.user.domain.User;
 
@@ -49,5 +50,13 @@ public class Room extends BaseTimeEntity {
 
     public static Room create(CreateRoomCommand command, User host) {
         return new Room(command.getTitle(), command.getRoomType(), host, RoomStatus.WAIT);
+    }
+
+    public int getCapacity() {
+        return roomType.getCapacity();
+    }
+
+    public int getTeamCapacity() {
+        return roomType.getCapacity() / Team.values().length;
     }
 }
