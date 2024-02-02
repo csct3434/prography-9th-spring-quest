@@ -25,7 +25,7 @@ public class CreateRoomRequest {
     @NotBlank
     private String title;
 
-    public CreateRoomCommand toCommand() {
+    public CreateRoomCommand buildCommand() {
         return new CreateRoomCommand(userId, roomType, title);
     }
 }

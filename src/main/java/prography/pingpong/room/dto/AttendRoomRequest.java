@@ -11,7 +11,7 @@ public class AttendRoomRequest {
 
     private Integer userId;
 
-    public AttendRoomCommand toCommand(int roomId) {
+    public AttendRoomCommand buildCommand(int roomId) {
         return new AttendRoomCommand(roomId, userId);
     }
 }

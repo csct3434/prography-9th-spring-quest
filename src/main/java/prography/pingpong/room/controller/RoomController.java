@@ -32,7 +32,7 @@ public class RoomController {
 
     @PostMapping("/room")
     public ResponseEntity<ApiResponse<Void>> create(@Valid @RequestBody CreateRoomRequest request) {
-        createRoomService.doService(request.toCommand());
+        createRoomService.doService(request.buildCommand());
         return ResponseEntity.ok(ApiResponse.success());
     }
 
@@ -58,7 +58,7 @@ public class RoomController {
         @PathVariable("roomId") int roomId,
         @RequestBody AttendRoomRequest request
     ) {
-        attendRoomService.doService(request.toCommand(roomId));
+        attendRoomService.doService(request.buildCommand(roomId));
         return ResponseEntity.ok(ApiResponse.success());
     }
 
