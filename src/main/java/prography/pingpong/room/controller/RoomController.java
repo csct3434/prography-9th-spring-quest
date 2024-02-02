@@ -17,11 +17,13 @@ import prography.pingpong.room.dto.FindAllRoomsResponse;
 import prography.pingpong.room.dto.FindRoomDetailsCommand;
 import prography.pingpong.room.dto.FindRoomDetailsResponse;
 import prography.pingpong.room.dto.LeaveRoomRequest;
+import prography.pingpong.room.dto.StartGameRequest;
 import prography.pingpong.room.service.AttendRoomService;
 import prography.pingpong.room.service.CreateRoomService;
 import prography.pingpong.room.service.FindAllRoomsService;
 import prography.pingpong.room.service.FindRoomDetailsService;
 import prography.pingpong.room.service.LeaveRoomService;
+import prography.pingpong.room.service.StartGameService;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,6 +34,7 @@ public class RoomController {
     private final CreateRoomService createRoomService;
     private final FindAllRoomsService findAllRoomsService;
     private final FindRoomDetailsService findRoomDetailsService;
+    private final StartGameService startGameService;
 
     @PostMapping("/room")
     public ResponseEntity<ApiResponse<Void>> create(@Valid @RequestBody CreateRoomRequest request) {
@@ -71,6 +74,15 @@ public class RoomController {
         @Valid @RequestBody LeaveRoomRequest request
     ) {
         leaveRoomService.doService(request.buildCommand(roomId));
+        return ResponseEntity.ok(ApiResponse.success());
+    }
+
+    @PostMapping("/room/start/{roomId}")
+    public ResponseEntity<ApiResponse<Void>> startGame(
+        @PathVariable("roomId") Integer roomId,
+        @Valid @RequestBody StartGameRequest request
+    ) {
+        startGameService.doService(request.buildCommand(roomId));
         return ResponseEntity.ok(ApiResponse.success());
     }
 
