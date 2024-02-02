@@ -1,5 +1,6 @@
 package prography.pingpong.initialization.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class InitializeRequest {
 
-    private int seed;
-    private int quantity;
+    @NotNull
+    private Integer seed;
+
+    @NotNull
+    private Integer quantity;
 
     public InitializeCommand buildCommand() {
         return new InitializeCommand(seed, quantity);

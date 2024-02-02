@@ -20,8 +20,8 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<FindAllUsersResponse>> findAllUsers(
-        @RequestParam("size") int pageSize,
-        @RequestParam("page") int pageNumber
+        @RequestParam("size") Integer pageSize,
+        @RequestParam("page") Integer pageNumber
     ) {
         FindAllUsersCommand command = new FindAllUsersCommand(pageSize, pageNumber);
         FindAllUsersResponse result = findAllUsersService.doService(command);

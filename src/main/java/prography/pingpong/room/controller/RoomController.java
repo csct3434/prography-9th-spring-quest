@@ -41,8 +41,8 @@ public class RoomController {
 
     @GetMapping("/room")
     public ResponseEntity<ApiResponse<FindAllRoomsResponse>> findAll(
-        @RequestParam("size") int pageSize,
-        @RequestParam("page") int pageNumber
+        @RequestParam("size") Integer pageSize,
+        @RequestParam("page") Integer pageNumber
     ) {
         FindAllRoomsCommand command = new FindAllRoomsCommand(pageSize, pageNumber);
         FindAllRoomsResponse result = findAllRoomsService.doService(command);
@@ -50,7 +50,7 @@ public class RoomController {
     }
 
     @GetMapping("/room/{roomId}")
-    public ResponseEntity<ApiResponse<FindRoomDetailsResponse>> findDetails(@PathVariable("roomId") int roomId) {
+    public ResponseEntity<ApiResponse<FindRoomDetailsResponse>> findDetails(@PathVariable("roomId") Integer roomId) {
         FindRoomDetailsCommand command = new FindRoomDetailsCommand(roomId);
         FindRoomDetailsResponse result = findRoomDetailsService.doService(command);
         return ResponseEntity.ok(ApiResponse.success(result));
@@ -58,8 +58,8 @@ public class RoomController {
 
     @PostMapping("/room/attention/{roomId}")
     public ResponseEntity<ApiResponse<Void>> attend(
-        @PathVariable("roomId") int roomId,
-        @RequestBody AttendRoomRequest request
+        @PathVariable("roomId") Integer roomId,
+        @Valid @RequestBody AttendRoomRequest request
     ) {
         attendRoomService.doService(request.buildCommand(roomId));
         return ResponseEntity.ok(ApiResponse.success());
@@ -67,8 +67,8 @@ public class RoomController {
 
     @PostMapping("/room/out/{roomId}")
     public ResponseEntity<ApiResponse<Void>> leave(
-        @PathVariable("roomId") int roomId,
-        @RequestBody LeaveRoomRequest request
+        @PathVariable("roomId") Integer roomId,
+        @Valid @RequestBody LeaveRoomRequest request
     ) {
         leaveRoomService.doService(request.buildCommand(roomId));
         return ResponseEntity.ok(ApiResponse.success());

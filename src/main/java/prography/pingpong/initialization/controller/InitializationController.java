@@ -1,5 +1,6 @@
 package prography.pingpong.initialization.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ public class InitializationController {
     private final InitializeService initializeService;
 
     @PostMapping("/init")
-    public ResponseEntity<ApiResponse<Void>> init(@RequestBody InitializeRequest request) {
+    public ResponseEntity<ApiResponse<Void>> init(@Valid @RequestBody InitializeRequest request) {
         initializeService.doService(request.buildCommand());
         return ResponseEntity.ok(ApiResponse.success());
     }
