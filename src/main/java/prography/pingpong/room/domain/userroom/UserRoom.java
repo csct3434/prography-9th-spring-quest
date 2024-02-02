@@ -27,8 +27,8 @@ public class UserRoom extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @JoinColumn(nullable = false)
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false, unique = true)
     private User user;
 
     @JoinColumn(nullable = false)
