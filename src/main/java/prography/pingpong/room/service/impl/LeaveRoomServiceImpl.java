@@ -30,7 +30,7 @@ public class LeaveRoomServiceImpl implements LeaveRoomService {
 
         validateRoomLeaveRules(user, room);
 
-        userRoomRepository.deleteByRoomAndUser(room, user);
+        userRoomRepository.deleteByUser(user);
 
         finishRoomIfHostLeft(user, room);
     }

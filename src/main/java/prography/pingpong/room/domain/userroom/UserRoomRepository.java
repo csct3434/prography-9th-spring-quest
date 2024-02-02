@@ -16,6 +16,6 @@ public interface UserRoomRepository extends JpaRepository<UserRoom, Integer> {
 
     void deleteByRoom(Room room);
 
-    void deleteByRoomAndUser(Room room, User user);
+    void deleteByUser(User user);
 
 }
