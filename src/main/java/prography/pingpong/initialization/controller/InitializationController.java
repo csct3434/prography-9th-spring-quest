@@ -17,7 +17,7 @@ public class InitializationController {
 
     @PostMapping("/init")
     public ResponseEntity<ApiResponse<Void>> init(@RequestBody InitializeRequest request) {
-        initializeService.doService(request.toCommand());
+        initializeService.doService(request.buildCommand());
         return ResponseEntity.ok(ApiResponse.success());
     }
 }

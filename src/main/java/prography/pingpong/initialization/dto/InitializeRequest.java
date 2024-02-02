@@ -12,7 +12,7 @@ public class InitializeRequest {
     private int seed;
     private int quantity;
 
-    public InitializeCommand toCommand() {
+    public InitializeCommand buildCommand() {
         return new InitializeCommand(seed, quantity);
     }
 }
