@@ -1,4 +1,4 @@
-package prography.pingpong.initialization.service.impl;
+package prography.pingpong.initialization.service;
 
 public interface TableInitializer {
 

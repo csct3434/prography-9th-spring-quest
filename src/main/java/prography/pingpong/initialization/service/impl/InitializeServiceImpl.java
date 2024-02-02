@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import prography.pingpong.initialization.dto.InitializeCommand;
 import prography.pingpong.initialization.dto.UserData;
+import prography.pingpong.initialization.service.ExternalUserDataFetcher;
 import prography.pingpong.initialization.service.InitializeService;
+import prography.pingpong.initialization.service.TableInitializer;
 import prography.pingpong.user.domain.UserRepository;
 
 @Slf4j

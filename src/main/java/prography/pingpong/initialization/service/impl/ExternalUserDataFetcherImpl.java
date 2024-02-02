@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import prography.pingpong.initialization.dto.InitializeCommand;
 import prography.pingpong.initialization.dto.UserData;
+import prography.pingpong.initialization.service.ExternalUserDataFetcher;
 
 @Component
 public class ExternalUserDataFetcherImpl implements ExternalUserDataFetcher {
