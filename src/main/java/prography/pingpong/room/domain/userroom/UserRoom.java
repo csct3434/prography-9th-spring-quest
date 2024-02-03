@@ -56,4 +56,9 @@ public class UserRoom extends BaseTimeEntity {
     public static UserRoom buildBlue(User user, Room room) {
         return new UserRoom(user, room, Team.BLUE);
     }
+
+    public Team getOppositeTeam() {
+        return (team == Team.RED) ? Team.BLUE : Team.RED;
+    }
+
 }
