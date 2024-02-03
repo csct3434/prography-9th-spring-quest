@@ -6,7 +6,7 @@ import prography.pingpong.room.domain.room.Room;
 import prography.pingpong.user.domain.User;
 
 @Repository
-public interface UserRoomRepository extends JpaRepository<UserRoom, Integer> {
+public interface UserRoomRepository extends JpaRepository<UserRoom, Integer>, CustomUserRoomRepository {
 
     boolean existsByUser(User user);
 
