@@ -58,7 +58,11 @@ public class UserRoom extends BaseTimeEntity {
     }
 
     public Team getOppositeTeam() {
-        return (team == Team.RED) ? Team.BLUE : Team.RED;
+        return (this.team == Team.RED) ? Team.BLUE : Team.RED;
+    }
+
+    public void changeTeam() {
+        this.team = getOppositeTeam();
     }
 
 }
