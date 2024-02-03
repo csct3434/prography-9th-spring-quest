@@ -1,4 +1,4 @@
-package prography.pingpong.room.service;
+package prography.pingpong.room.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,6 +9,8 @@ import prography.pingpong.room.domain.room.RoomRepository;
 import prography.pingpong.room.domain.userroom.UserRoom;
 import prography.pingpong.room.domain.userroom.UserRoomRepository;
 import prography.pingpong.room.dto.ChangeTeamCommand;
+import prography.pingpong.room.service.ChangeTeamService;
+import prography.pingpong.room.service.TeamChangeRulesValidator;
 import prography.pingpong.user.domain.User;
 import prography.pingpong.user.domain.UserRepository;
 
