@@ -6,11 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import prography.pingpong.common.response.ApiResponse;
 import prography.pingpong.room.dto.AttendRoomRequest;
+import prography.pingpong.room.dto.ChangeTeamRequest;
 import prography.pingpong.room.dto.CreateRoomRequest;
 import prography.pingpong.room.dto.FindAllRoomsCommand;
 import prography.pingpong.room.dto.FindAllRoomsResponse;
@@ -19,6 +21,7 @@ import prography.pingpong.room.dto.FindRoomDetailsResponse;
 import prography.pingpong.room.dto.LeaveRoomRequest;
 import prography.pingpong.room.dto.StartGameRequest;
 import prography.pingpong.room.service.AttendRoomService;
+import prography.pingpong.room.service.ChangeTeamService;
 import prography.pingpong.room.service.CreateRoomService;
 import prography.pingpong.room.service.FindAllRoomsService;
 import prography.pingpong.room.service.FindRoomDetailsService;
@@ -29,12 +32,13 @@ import prography.pingpong.room.service.StartGameService;
 @RequiredArgsConstructor
 public class RoomController {
 
+    private final StartGameService startGameService;
     private final LeaveRoomService leaveRoomService;
     private final AttendRoomService attendRoomService;
     private final CreateRoomService createRoomService;
+    private final ChangeTeamService changeTeamService;
     private final FindAllRoomsService findAllRoomsService;
     private final FindRoomDetailsService findRoomDetailsService;
-    private final StartGameService startGameService;
 
     @PostMapping("/room")
     public ResponseEntity<ApiResponse<Void>> create(@Valid @RequestBody CreateRoomRequest request) {
@@ -83,6 +87,15 @@ public class RoomController {
         @Valid @RequestBody StartGameRequest request
     ) {
         startGameService.doService(request.buildCommand(roomId));
+        return ResponseEntity.ok(ApiResponse.success());
+    }
+
+    @PutMapping("/team/{roomId}")
+    public ResponseEntity<ApiResponse<Void>> changeTeam(
+        @PathVariable("roomId") Integer roomId,
+        @Valid @RequestBody ChangeTeamRequest request
+    ) {
+        changeTeamService.doService(request.buildCommand(roomId));
         return ResponseEntity.ok(ApiResponse.success());
     }
 
