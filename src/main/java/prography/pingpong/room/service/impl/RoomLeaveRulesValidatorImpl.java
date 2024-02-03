@@ -16,6 +16,11 @@ public class RoomLeaveRulesValidatorImpl implements RoomLeaveRulesValidator {
 
     @Override
     public boolean validate(User user, Room room) {
+        // Null Check
+        if (user == null || room == null) {
+            return false;
+        }
+
         // 유저가 해당 방에 참가하지 않았다면 나갈 수 없습니다.
         if (!userRoomRepository.existsByUser(user)) {
             return false;

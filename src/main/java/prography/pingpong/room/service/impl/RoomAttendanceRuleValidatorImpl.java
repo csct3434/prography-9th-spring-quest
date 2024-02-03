@@ -18,6 +18,11 @@ public class RoomAttendanceRuleValidatorImpl implements RoomAttendanceRuleValida
 
     @Override
     public boolean validate(User user, Room room) {
+        // Null Check
+        if (user == null || room == null) {
+            return false;
+        }
+
         // Rule-1. 방이 대기(WAIT) 상태가 아니라면, 참가할 수 없습니다.
         if (room.getStatus() != RoomStatus.WAIT) {
             return false;

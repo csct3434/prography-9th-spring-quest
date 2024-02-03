@@ -16,6 +16,11 @@ public class TeamChangeRulesValidatorImpl implements TeamChangeRulesValidator {
 
     @Override
     public boolean validate(UserRoom userRoom, Room room) {
+        // Null Check
+        if (userRoom == null || room == null) {
+            return false;
+        }
+
         // 현재 방이 대기(WAIT) 상태가 아니라면, 팀을 변경할 수 없습니다.
         if (room.getStatus() != RoomStatus.WAIT) {
             return false;

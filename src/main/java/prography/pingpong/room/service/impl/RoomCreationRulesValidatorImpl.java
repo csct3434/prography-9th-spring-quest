@@ -14,6 +14,11 @@ public class RoomCreationRulesValidatorImpl implements RoomCreationRulesValidato
 
     @Override
     public boolean validate(User host) {
+        // Null Check
+        if (host == null) {
+            return false;
+        }
+
         // 유저가 활성 상태가 아니면, 방을 생성할 수 없습니다.
         if (!host.isActive()) {
             return false;

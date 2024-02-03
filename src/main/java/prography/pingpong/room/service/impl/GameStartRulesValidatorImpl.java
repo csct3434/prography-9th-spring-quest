@@ -18,6 +18,11 @@ public class GameStartRulesValidatorImpl implements GameStartRulesValidator {
     @Override
     @Transactional(readOnly = true)
     public boolean validate(User user, Room room) {
+        // Null Check
+        if (user == null || room == null) {
+            return false;
+        }
+
         // 호스트가 아니라면 게임을 시작할 수 없습니다.
         if (!user.equals(room.getHost())) {
             return false;
