@@ -10,6 +10,7 @@ import prography.pingpong.room.domain.userroom.UserRoom;
 import prography.pingpong.room.domain.userroom.UserRoomRepository;
 import prography.pingpong.room.dto.CreateRoomCommand;
 import prography.pingpong.room.service.CreateRoomService;
+import prography.pingpong.room.service.RoomCreationRulesValidator;
 import prography.pingpong.user.domain.User;
 import prography.pingpong.user.domain.UserRepository;
 
@@ -20,21 +21,21 @@ public class CreateRoomServiceImpl implements CreateRoomService {
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
     private final UserRoomRepository userRoomRepository;
+    private final RoomCreationRulesValidator roomCreationRulesValidator;
 
     @Override
     @Transactional
     public void doService(CreateRoomCommand command) {
         User host = userRepository.findByIdOrElseThrow(command.getUserId());
 
-        checkException(host);
+        validateRoomCreationRules(host);
 
         Room room = roomRepository.save(Room.create(command, host));
         userRoomRepository.save(UserRoom.buildRed(host, room));
     }
 
-    private void checkException(User host) {
-        // 활성 상태가 아니거나, 다른 방에 참여한 경우 201 응답
-        if (!host.isActive() || userRoomRepository.existsByUser(host)) {
+    private void validateRoomCreationRules(User host) {
+        if (!roomCreationRulesValidator.validate(host)) {
             throw RestApiException.badRequest();
         }
     }
